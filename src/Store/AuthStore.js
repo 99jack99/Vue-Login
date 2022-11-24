@@ -7,49 +7,24 @@ export const useAuthStore = defineStore({
 
   state: () => ({
     // initialize state from local storage to enable user to stay logged in
-    user: "asdad",
+  user: {},
   }),
+
   actions: {
-    /* async login(username, password) {
-      try {
-        const user = await axios.post("", {
-          username,
-          password
+    async login(em, pwd) {
+      const res = axios
+        .post("https://demo.treblle.com/api/v1/auth/login", {
+          email: em,
+          password: pwd,
+        })
+        .then(function (res) {
+          console.log(res.status);
+          
+        })
+        .catch(function (error) {
+          console.log("mal", error);
         });
-
-     
-        this.user = user;
-
-        
-
-
-      } catch (error) {
-        console.log(error);
-      }
-    }, */
-
-    async login(email, pwd) {
-      try {
-
-        let response = await axios.post(
-          "https://demo.treblle.com/api/v1/auth/login",
-          {
-            email: email,
-            password: pwd,
-          }
-        );
-        
-        console.log();
-
-      } catch (error) {
-        console.log(error);
-      }
     },
 
-    logout() {
-      this.user = null;
-
-      router.push("/account/login");
-    },
   },
 });

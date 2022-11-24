@@ -4,27 +4,13 @@ import { ref } from "vue";
 import axios from "axios";
 
 import { useAuthStore } from "../Store/AuthStore";
+const authStore = useAuthStore();
+
 
 const userEmail = ref("");
 const userPassword = ref("");
 
-const verifier = () => {
-  if (userEmail.value == "" || userPassword.value == "") {
-    return alert("Rellena los campos");
-  }
 
-  const res = axios
-    .post("https://demo.treblle.com/api/v1/auth/login", {
-      email: userEmail.value,
-      password: userPassword.value,
-    })
-    .then(function (res) {
-      console.log(res.status);
-    })
-    .catch(function (error) {
-      console.log("mal", error);
-    });
-};
 </script>
 
 <template>
@@ -49,7 +35,7 @@ const verifier = () => {
             placeholder="Password"
           />
 
-          <button type="submit" v-on:click="verifier()" class="bodyItem">
+          <button type="submit" v-on:click="authStore.login(userEmail, userPassword)" class="bodyItem">
             Login
           </button>
         </form>
