@@ -1,38 +1,30 @@
 <script setup>
 import { ref } from "vue";
 
-import axios from 'axios'
+import axios from "axios";
 
 import { useAuthStore } from "../Store/AuthStore";
 
+const userEmail = ref("");
+const userPassword = ref("");
 
-const userEmail = ref("")
-const userPassword = ref("")
-
-const verifier = () =>{
+const verifier = () => {
   if (userEmail.value == "" || userPassword.value == "") {
-     return alert("Rellena los campos")
+    return alert("Rellena los campos");
   }
 
-  const res = axios.post('https://demo.treblle.com/api/v1/auth/login',{
-    email : userEmail,
-    password : userPassword
-  })
-  .then(
-    res => res.json())
-
-    if (res.success) {
-      console.log("BIEN", res.status);
-    }
-    else{
-      console.log("No", res.status);
-    }
-
-  
-  /* console.log(userEmail);
-  console.log(userPassword); */
-}
-
+  const res = axios
+    .post("https://demo.treblle.com/api/v1/auth/login", {
+      email: userEmail.value,
+      password: userPassword.value,
+    })
+    .then(function (res) {
+      console.log(res.status);
+    })
+    .catch(function (error) {
+      console.log("mal", error);
+    });
+};
 </script>
 
 <template>
@@ -44,10 +36,22 @@ const verifier = () =>{
 
       <div>
         <form @submit.prevent class="body">
-          <input v-model="userEmail" class="bodyItem" type="text" placeholder="Email" />
-          <input v-model="userPassword" class="bodyItem" type="password" placeholder="Password" />
+          <input
+            v-model="userEmail"
+            class="bodyItem"
+            type="text"
+            placeholder="Email"
+          />
+          <input
+            v-model="userPassword"
+            class="bodyItem"
+            type="password"
+            placeholder="Password"
+          />
 
-          <button type="submit" v-on:click="verifier()" class="bodyItem">Login</button>
+          <button type="submit" v-on:click="verifier()" class="bodyItem">
+            Login
+          </button>
         </form>
       </div>
     </div>
@@ -87,6 +91,4 @@ const verifier = () =>{
   margin: 0.5em;
   padding: 0.7em;
 }
-
-
 </style>
