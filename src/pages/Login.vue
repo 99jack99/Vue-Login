@@ -1,34 +1,55 @@
 <script setup>
+import { ref } from "vue";
 
-import {ref} from 'vue'
+import axios from 'axios'
 
-
-const userData = ref({
-  name : "",
-  email: "",
-  password : ""
-})
+import { useAuthStore } from "../Store/AuthStore";
 
 
+const userEmail = ref("")
+const userPassword = ref("")
+
+const verifier = () =>{
+  if (userEmail.value == "" || userPassword.value == "") {
+     return alert("Rellena los campos")
+  }
+
+  const res = axios.post('https://demo.treblle.com/api/v1/auth/login',{
+    email : userEmail,
+    password : userPassword
+  })
+  .then(
+    res => res.json())
+
+    if (res.success) {
+      console.log("BIEN", res.status);
+    }
+    else{
+      console.log("No", res.status);
+    }
+
+  
+  /* console.log(userEmail);
+  console.log(userPassword); */
+}
 
 </script>
 
 <template>
   <div id="wall">
-
     <div class="loginCard">
-
       <div class="title">
         <h1>Login with us!</h1>
-        <h2>Info: {{userData.name}}</h2>
       </div>
-      
-        <div class="body">
-          <input class="bodyItem" type="text" placeholder="Username:">
-          <input class="bodyItem" type="text" placeholder="Password:">
-          <button type="submit"> Go!</button>
-        </div>
-    
+
+      <div>
+        <form @submit.prevent class="body">
+          <input v-model="userEmail" class="bodyItem" type="text" placeholder="Email" />
+          <input v-model="userPassword" class="bodyItem" type="password" placeholder="Password" />
+
+          <button type="submit" v-on:click="verifier()" class="bodyItem">Login</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -44,7 +65,7 @@ const userData = ref({
   border-radius: 0.5em;
 }
 
-.loginCard{
+.loginCard {
   width: 20em;
   height: 20em;
   background-color: yellow;
@@ -66,4 +87,6 @@ const userData = ref({
   margin: 0.5em;
   padding: 0.7em;
 }
+
+
 </style>
