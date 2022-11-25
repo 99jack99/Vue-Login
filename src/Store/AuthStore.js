@@ -2,30 +2,58 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-import  router  from '../router';
+import router from "../router";
 
 export const useAuthStore = defineStore({
   id: "authStore",
 
-  state: () => ({
-    // initialize state from local storage to enable user to stay logged in
-    user: {},
-  }),
+  state: () => {
+    return {
+      user: {},
+      isLogged: false,
+    };
+  },
+
+  getters: {
+    logState: (state) => state.isLogged,
+    userName: (state) => state.user.name
+  },
 
   actions: {
-    async login(em, pwd) {
+    login(em, pwd) {
       const res = axios
         .post("https://demo.treblle.com/api/v1/auth/login", {
           email: em,
           password: pwd,
         })
-        .then(function (res) {
+
+        .then((res) => {
+
           console.log(res.status);
-          router.push("/");
+
+          this.user = res.data.user;
+          this.logged()
+          router.push("/")
         })
+
         .catch(function (error) {
-          console.log("mal", error);
+          console.log("mal", error.message);
+          
         });
+    },
+
+    logout() {
+      this.user == {};
+    },
+
+    logged() {
+      this.isLogged = true;
+    },
+
+    add() {
+      this.arr.push("Hola amigos");
+      console.log(this.arr);
+      this.logged();
     },
   },
 });

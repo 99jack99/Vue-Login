@@ -1,16 +1,47 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, computed } from "vue";
 
 import axios from "axios";
+
+import useVuelidate from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
 
 import { useAuthStore } from "../Store/AuthStore";
 const authStore = useAuthStore();
 
-
 const userEmail = ref("");
 const userPassword = ref("");
 
+const formData = reactive({
+  email: "",
+  password: "",
+});
 
+/* Estas son reglas que tiene que tener vuelidate para verificar los campos
+ */
+const rules = computed(() => {
+  return {
+    email: { required, email },
+    password: { required },
+  };
+});
+
+/* const rules = reactive({
+  email : {required, email},
+  password : {required}
+}); */
+
+const submitForm = async () => {
+  const result = await v$.value.$validate();
+  if (result) {
+    alert("BIEN");
+  } else {
+    alert("MAL");
+  }
+};
+
+/* llamamos a vuelidate, toma dos parametos. 1- reglas, 2- el state */
+const v$ = useVuelidate(rules, formData);
 </script>
 
 <template>
@@ -23,19 +54,24 @@ const userPassword = ref("");
       <div>
         <form @submit.prevent class="body">
           <input
-            v-model="userEmail"
+            v-model="email"
             class="bodyItem"
-            type="text"
+            type="email"
             placeholder="Email"
           />
+          <span
+            v-for="error in v$.email.$errors"
+            :key="error.$uid"
+            class="error"
+          ></span>
           <input
-            v-model="userPassword"
+            v-model="password"
             class="bodyItem"
             type="password"
             placeholder="Password"
           />
 
-          <button type="submit" v-on:click="authStore.login(userEmail, userPassword)" class="bodyItem">
+          <button type="submit" v-on:click="submitForm()" class="bodyItem">
             Login
           </button>
         </form>
@@ -76,5 +112,9 @@ const userPassword = ref("");
 .bodyItem {
   margin: 0.5em;
   padding: 0.7em;
+}
+
+.error {
+  color: red;
 }
 </style>

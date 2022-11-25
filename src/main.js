@@ -7,10 +7,9 @@ import './style.css'
 import router from './router';
 
 
-const pinia = createPinia()
+/* const pinia = createPinia() */
 
 createApp(App)
-.use(pinia)
+.use(createPinia())
 .use(router)
-.use(pinia)
 .mount('#app')
