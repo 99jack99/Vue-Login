@@ -17,9 +17,10 @@ import Nav from './components/Nav.vue'
 
   height: 100vh;
   width: 100%;
-  background-image: url(./assets/wall.jpeg);
+  background-color: #282A3A;
+  /* background-image: url(./assets/wall.jpeg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 
 }
 </style>
