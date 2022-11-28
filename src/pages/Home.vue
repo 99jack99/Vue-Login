@@ -1,23 +1,23 @@
 <script setup>
 import { useAuthStore } from "../Store/AuthStore";
 const authStore = useAuthStore();
-
-
-
 </script>
 
 <template>
   <div id="card">
     <div class="bodyCard">
       <div class="titles">
-        <h1>Hola Usuario, {{authStore.user.name}}</h1>
+        <div v-if="authStore.isLogged">
+          <h1>Hola {{ authStore.user.name}}! Encantados de tener de vuelta!</h1>
+        </div>
 
-        <h2>Estamos encantados de verte otra vez!</h2>
+        <div v-else>
+          <h2>No crees que deberias logearte primero!?🤬 🤬 </h2>
+        </div>
+
+       
       </div>
 
-      <div class="body">
-        <button class="logoutbutton" v-on:click="authStore.$reset()">Salir</button>
-      </div>
     </div>
   </div>
 </template>
@@ -42,8 +42,9 @@ const authStore = useAuthStore();
 
 .titles {
   font-size: 2em;
-  color: white;
-  text-shadow: 0.2em 0.2em 0.5em palevioletred;
+  color: #735F32;
+  text-shadow: 1px 1px #FED049;
+  margin: 5em;
 }
 
 .logoutbutton {

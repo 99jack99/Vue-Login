@@ -57,7 +57,7 @@ const v$ = useVuelidate(rules, formData);
   <div id="wall">
     <div class="RegisterCard">
       <div class="title">
-        <h1>Sign up if you´re not!</h1>
+        <h1>Join us by Sign In Up!</h1>
       </div>
 
       <div class="body">
