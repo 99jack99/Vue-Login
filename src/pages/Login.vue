@@ -1,10 +1,8 @@
 <script setup>
-import { ref, reactive, computed } from "vue";
-
-import axios from "axios";
+import { reactive, computed } from "vue";
 
 import useVuelidate from "@vuelidate/core";
-import { required, email, between, helpers } from "@vuelidate/validators";
+import { required, email, helpers } from "@vuelidate/validators";
 
 import { useAuthStore } from "../Store/AuthStore";
 const authStore = useAuthStore();

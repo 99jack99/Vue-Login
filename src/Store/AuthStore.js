@@ -20,10 +20,10 @@ export const useAuthStore = defineStore({
   },
 
   actions: {
-    login(em, pwd) {
+    login(email, pwd) {
       const res = axios
         .post("https://demo.treblle.com/api/v1/auth/login", {
-          email: em,
+          email: email,
           password: pwd,
         })
 
@@ -37,23 +37,43 @@ export const useAuthStore = defineStore({
         })
 
         .catch(function (error) {
-          console.log("mal", error.message);
+          console.log("Credenciales incorrectas", error.message);
+          
+        });
+    },
+
+    signup(name, email, pwd){
+      const res = axios
+        .post("url", {
+          name: name,
+          email: email,
+          password: pwd,
+        })
+
+        .then((res) => {
+
+          console.log(res.status);
+          router.push("/login")
+        })
+
+        .catch(function (error) {
+          console.log("Algo ha ido mal", error.message);
           
         });
     },
 
     logout() {
       this.user == {};
+      this.notLogged();
     },
 
     logged() {
       this.isLogged = true;
     },
 
-    add() {
-      this.arr.push("Hola amigos");
-      console.log(this.arr);
-      this.logged();
-    },
+    notLogged(){
+      this.isLogged = false;
+    }
+
   },
 });
