@@ -8,8 +8,8 @@ import { useAuthStore } from "../Store/AuthStore";
 const authStore = useAuthStore();
 
 const formData = reactive({
-  email: "",
-  password: "",
+  email: "jbraun@yahoo.com",
+  password: "********",
 });
 
 /* Estas son reglas que tiene que tener vuelidate para verificar los campos */

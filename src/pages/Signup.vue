@@ -45,7 +45,7 @@ const submitForm = async () => {
   if (result) {
     alert("bien");
   } else {
-    alert("No bien formulario");
+    alert("Datos incorrectos!");
   }
 };
 

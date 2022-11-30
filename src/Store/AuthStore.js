@@ -33,7 +33,7 @@ export const useAuthStore = defineStore({
 
           this.user = res.data.user;
           this.logged()
-          router.push("/")
+          router.push("/profile")
         })
 
         .catch(function (error) {

@@ -6,8 +6,17 @@ const authStore = useAuthStore();
 <template>
   <div id="card">
     <div class="bodyCard">
-    
-      <h2>HOME</h2>
+      <div class="titles">
+        <div v-if="authStore.isLogged">
+          <h1>Hola {{ authStore.user.name}}! Encantados de tener de vuelta!</h1>
+        </div>
+
+        <div v-else>
+          <h2>No crees que deberias logearte primero!?🤬 🤬 </h2>
+        </div>
+
+       
+      </div>
 
     </div>
   </div>

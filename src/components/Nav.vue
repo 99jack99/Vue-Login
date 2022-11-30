@@ -6,9 +6,8 @@ const authStore = useAuthStore();
 <template>
   <div id="Container">
     <div v-if="authStore.isLogged" class="navBox">
-      <div class="navItem lin">
-        {{ authStore.user.name }}
-      </div>
+      <router-link to="/" class="navItem lin">Home</router-link>
+      <router-link to="/profile" class="navItem lin">{{ authStore.user.name }}</router-link>
 
       <div>
         <button class="logoutbutton navItem" v-on:click="authStore.$reset()">
@@ -20,6 +19,7 @@ const authStore = useAuthStore();
     <div v-else class="navBox">
       <router-link to="/login" class="navItem lin">Login</router-link>
       <router-link to="/signup" class="navItem lin">Sign up</router-link>
+
     </div>
   </div>
 </template>
@@ -70,6 +70,7 @@ const authStore = useAuthStore();
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 1em;
     
 }
 

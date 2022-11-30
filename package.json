@@ -13,10 +13,8 @@
     "@vuelidate/validators": "^2.0.0",
     "axios": "^1.2.0",
     "pinia": "^2.0.24",
-    "vee-validate": "^4.7.3",
     "vue": "^3.2.41",
-    "vue-router": "^4.1.6",
-    "yup": "^0.32.11"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
