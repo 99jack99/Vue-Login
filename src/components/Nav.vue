@@ -7,7 +7,9 @@ const authStore = useAuthStore();
   <div id="Container">
     <div v-if="authStore.isLogged" class="navBox">
       <router-link to="/" class="navItem lin">Home</router-link>
-      <router-link to="/profile" class="navItem lin">{{ authStore.user.name }}</router-link>
+      <router-link to="/profile" class="navItem lin">{{
+        authStore.user.name
+      }}</router-link>
 
       <div>
         <button class="logoutbutton navItem" v-on:click="authStore.$reset()">
@@ -19,7 +21,6 @@ const authStore = useAuthStore();
     <div v-else class="navBox">
       <router-link to="/login" class="navItem lin">Login</router-link>
       <router-link to="/signup" class="navItem lin">Sign up</router-link>
-
     </div>
   </div>
 </template>
@@ -43,11 +44,11 @@ const authStore = useAuthStore();
   box-shadow: -2px 17px 31px -10px rgba(0, 0, 0, 0.75);
 }
 
-.navBox{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.navBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .navItem {
@@ -61,21 +62,20 @@ const authStore = useAuthStore();
   font-weight: bold;
 }
 
-.logoutbutton{
-  background-color: #FED049;
+.logoutbutton {
+  background-color: #fed049;
   border: 0.2em solid black;
   border-radius: 0.2em;
   cursor: pointer;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 1em;
-    
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1em;
 }
 
-.logoutbutton:hover{
-background-color: black;
-color: #FED049;
+.logoutbutton:hover {
+  background-color: black;
+  color: #fed049;
 }
 </style>

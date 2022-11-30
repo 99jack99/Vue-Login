@@ -7,17 +7,8 @@ const authStore = useAuthStore();
   <div id="card">
     <div class="bodyCard">
       <div class="titles">
-        <div v-if="authStore.isLogged">
-          <h1>Hola {{ authStore.user.name}}! Encantados de tener de vuelta!</h1>
-        </div>
-
-        <div v-else>
-          <h2>No crees que deberias logearte primero!?🤬 🤬 </h2>
-        </div>
-
-       
+        <h1>Hola {{ authStore.user.name }}! Encantados de tener de vuelta!</h1>
       </div>
-
     </div>
   </div>
 </template>
@@ -42,8 +33,8 @@ const authStore = useAuthStore();
 
 .titles {
   font-size: 2em;
-  color: #735F32;
-  text-shadow: 1px 1px #FED049;
+  color: #735f32;
+  text-shadow: 1px 1px #fed049;
   margin: 5em;
 }
 

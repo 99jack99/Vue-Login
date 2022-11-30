@@ -7,7 +7,7 @@ const authStore = useAuthStore();
   <div id="card">
     <div class="bodyCard">
     
-      <h2>HOME</h2>
+      <h2>Home</h2>
 
     </div>
   </div>

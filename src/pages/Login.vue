@@ -23,8 +23,10 @@ const rules = computed(() => {
   };
 });
 
+
 const submitForm = async () => {
   const result = await v$.value.$validate();
+
   if (result) {
     authStore.login(formData.email, formData.password);
   } else {
@@ -34,7 +36,6 @@ const submitForm = async () => {
 
 /* llamamos a vuelidate, toma dos parametos. 1- reglas, 2- el state */
 const v$ = useVuelidate(rules, formData);
-
 </script>
 
 <template>
@@ -71,7 +72,12 @@ const v$ = useVuelidate(rules, formData);
             >{{ error.$message }}</span
           >
 
-          <button type="submit" v-on:click="submitForm()" class="bodyItem buttonLog">
+          <button
+            
+            type="submit"
+            v-on:click.once="submitForm()"
+            class="bodyItem buttonLog"
+          >
             Login
           </button>
         </form>
@@ -100,15 +106,13 @@ const v$ = useVuelidate(rules, formData);
   align-items: center;
   justify-content: center;
   border-radius: 0.5em;
-  box-shadow: 28px 31px 31px -10px rgba(0,0,0,0.75);
+  box-shadow: 28px 31px 31px -10px rgba(0, 0, 0, 0.75);
 }
 
-.title{
-  color: #FED049;
+.title {
+  color: #fed049;
   text-shadow: 1px 1px 2px black;
 }
-
-
 
 .body {
   display: flex;
@@ -122,17 +126,16 @@ const v$ = useVuelidate(rules, formData);
   padding: 0.7em;
 }
 
-.buttonLog{
-  background-color: #FED049;
+.buttonLog {
+  background-color: #fed049;
   border: 0.2em solid black;
   border-radius: 0.2em;
   cursor: pointer;
-  
 }
 
-.buttonLog:hover{
-background-color: black;
-color: #FED049;
+.buttonLog:hover {
+  background-color: black;
+  color: #fed049;
 }
 
 .error {
